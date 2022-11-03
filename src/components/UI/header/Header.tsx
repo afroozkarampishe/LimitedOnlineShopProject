@@ -1,8 +1,9 @@
 import React from 'react';
 import { useEffect } from 'react';
 
+import Cart from './Cart';
 import UserDetail from './UserDetail';
-const Header = ({ getUser, user }: any) => {
+const Header = ({ getUser, user, getCarts, carts }: any) => {
   useEffect(() => {
     getUser();
   }, []);
@@ -22,9 +23,7 @@ const Header = ({ getUser, user }: any) => {
                   />
                 </div>
               </div>
-              <div className="w-full">
-                <div className="relative ml-3"></div>
-              </div>
+              <Cart getCarts={getCarts} carts={carts} />
             </div>
           </div>
         </div>
