@@ -9,14 +9,24 @@ import Header from './components/UI/header/Header';
 
 const App = () => {
   const [user, setUser] = useState({});
+  const [carts, setCarts] = useState({});
   const getUser = async() => {
     const { data } = await axios.get('https://fakestoreapi.com/users/1');
     setUser(data);
   };
+  const getCarts = async() => {
+    const { data } = await axios.get('https://fakestoreapi.com/carts/user/1');
+    setCarts(data);
+  };
   return (
     <>
       <div className="md:container md:mx-auto">
-        <Header getUser={getUser} user={user} />
+        <Header
+          getUser={getUser}
+          user={user}
+          getCarts={getCarts}
+          carts={carts}
+        />
         <Home />
       </div>
     </>
