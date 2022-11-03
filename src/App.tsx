@@ -10,6 +10,7 @@ import Header from './components/UI/header/Header';
 const App = () => {
   const [user, setUser] = useState({});
   const [carts, setCarts] = useState({});
+  const [products, setProducts] = useState([]);
   const getUser = async() => {
     const { data } = await axios.get('https://fakestoreapi.com/users/1');
     setUser(data);
@@ -17,6 +18,10 @@ const App = () => {
   const getCarts = async() => {
     const { data } = await axios.get('https://fakestoreapi.com/carts/user/1');
     setCarts(data);
+  };
+  const getProducts = async() => {
+    const { data } = await axios.get('https://fakestoreapi.com/products');
+    setProducts(data);
   };
   return (
     <>
@@ -27,7 +32,7 @@ const App = () => {
           getCarts={getCarts}
           carts={carts}
         />
-        <Home />
+        <Home getProducts={getProducts} products={products} />
       </div>
     </>
   );
