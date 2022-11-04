@@ -11,6 +11,8 @@ const App = () => {
   const [user, setUser] = useState({});
   const [carts, setCarts] = useState({});
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(false);
   const getUser = async() => {
     const { data } = await axios.get('https://fakestoreapi.com/users/1');
     setUser(data);
@@ -19,10 +21,23 @@ const App = () => {
     const { data } = await axios.get('https://fakestoreapi.com/carts/user/1');
     setCarts(data);
   };
-  const getProducts = async() => {
-    const { data } = await axios.get('https://fakestoreapi.com/products');
-    setProducts(data);
+  const getCategories = async() => {
+    const { data } = await axios.get(
+      'https://fakestoreapi.com/products/categories'
+    );
+    setCategories(data);
   };
+  const searchProducts = async(category: any) => {
+    setLoading(true);
+    const { data } = await axios.get(
+      `https://fakestoreapi.com/products/category/${category}`
+    );
+    setProducts(data);
+    setLoading(false);
+
+    console.log(products);
+  };
+  const clearProducts = () => setProducts([]);
   return (
     <>
       <div className="md:container md:mx-auto">
@@ -32,7 +47,14 @@ const App = () => {
           getCarts={getCarts}
           carts={carts}
         />
-        <Home getProducts={getProducts} products={products} />
+        <Home
+          searchProducts={searchProducts}
+          clearProducts={clearProducts}
+          loading={loading}
+          products={products}
+          getCategories={getCategories}
+          categories={categories}
+        />
       </div>
     </>
   );
