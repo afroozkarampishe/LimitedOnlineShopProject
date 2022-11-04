@@ -14,28 +14,44 @@ const App = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const getUser = async() => {
-    const { data } = await axios.get('https://fakestoreapi.com/users/1');
-    setUser(data);
+    try {
+      const { data } = await axios.get('https://fakestoreapi.com/users/1');
+      setUser(data);
+    } catch (e) {
+      console.error(e);
+    }
   };
   const getCarts = async() => {
-    const { data } = await axios.get('https://fakestoreapi.com/carts/user/1');
-    setCarts(data);
+    try {
+      const { data } = await axios.get('https://fakestoreapi.com/carts/user/1');
+      setCarts(data);
+    } catch (e) {
+      console.error(e);
+    }
   };
   const getCategories = async() => {
-    const { data } = await axios.get(
-      'https://fakestoreapi.com/products/categories'
-    );
-    setCategories(data);
+    try {
+      const { data } = await axios.get(
+        'https://fakestoreapi.com/products/categories'
+      );
+      setCategories(data);
+    } catch (e) {
+      console.error(e);
+    }
   };
   const searchProducts = async(category: any) => {
-    setLoading(true);
-    const { data } = await axios.get(
-      `https://fakestoreapi.com/products/category/${category}`
-    );
-    setProducts(data);
-    setLoading(false);
+    try {
+      setLoading(true);
+      const { data } = await axios.get(
+        `https://fakestoreapi.com/products/category/${category}`
+      );
+      setProducts(data);
+      setLoading(false);
 
-    console.log(products);
+      console.log(products);
+    } catch (e) {
+      console.error(e);
+    }
   };
   const clearProducts = () => setProducts([]);
   return (

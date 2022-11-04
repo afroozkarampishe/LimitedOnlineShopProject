@@ -13,7 +13,7 @@ const Header = ({ getUser, user, getCarts, carts }: any) => {
         <div className="mx-auto max-w-8xl px-2 sm:px-6 lg:px-8 h-full">
           <div className="grid grid-cols-1 gap-y-10 gap-x-10 sm:grid-cols-2 lg:grid-cols-3 xl:gap-x-16">
             <UserDetail user={user} />
-            <div className="hidden sm:ml-6 sm:block w-full ">
+            <div className="sm:ml-6 sm:block w-full ">
               <div className="flex space-x-4 pt-3 pb-3 pr-16 pl-16">
                 <img
                   className="rounded-full w-full h-14"

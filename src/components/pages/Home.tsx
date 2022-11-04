@@ -18,12 +18,10 @@ const Home = ({
           searchProducts={searchProducts}
           getCategories={getCategories}
           categories={categories}
+          clearProducts={clearProducts}
+          products={products}
         />
-        {products.length > 0 && (
-          <button className="clear" onClick={() => clearProducts()}>
-            CLEAR
-          </button>
-        )}
+
         {loading && <Spinner />}
         <Products products={products} />
       </div>
