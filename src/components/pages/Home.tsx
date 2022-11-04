@@ -1,12 +1,31 @@
 import React from 'react';
 
+import Form from '../products/Form';
 import Products from '../products/Products';
-const Home = ({ getProducts, products }: any) => {
+import Spinner from '../UI/Spinner';
+const Home = ({
+  searchProducts,
+  clearProducts,
+  products,
+  loading,
+  getCategories,
+  categories
+}: any) => {
   return (
     <>
-      <div className="mx-auto max-w-8xl py-16 px-2 sm:py-24 sm:px-6 lg:px-8">
-        <h1 style={{ textAlign: 'center', padding: '20px 0' }}>All Posts</h1>
-        <Products getProducts={getProducts} products={products} />
+      <div className="mx-auto max-w-8xl py-16 px-2 sm:pt-10 sm:pb-24 sm:px-6 lg:px-8">
+        <Form
+          searchProducts={searchProducts}
+          getCategories={getCategories}
+          categories={categories}
+        />
+        {products.length > 0 && (
+          <button className="clear" onClick={() => clearProducts()}>
+            CLEAR
+          </button>
+        )}
+        {loading && <Spinner />}
+        <Products products={products} />
       </div>
     </>
   );
