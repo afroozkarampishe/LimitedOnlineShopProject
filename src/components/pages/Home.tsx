@@ -9,7 +9,8 @@ const Home = ({
   products,
   loading,
   getCategories,
-  categories
+  categories,
+  getCarts
 }: any) => {
   return (
     <>
@@ -20,10 +21,11 @@ const Home = ({
           categories={categories}
           clearProducts={clearProducts}
           products={products}
+          loading={loading}
         />
 
         {loading && <Spinner />}
-        <Products products={products} />
+        {!loading && <Products products={products} getCarts={getCarts} />}
       </div>
     </>
   );

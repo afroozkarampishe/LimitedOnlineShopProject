@@ -54,6 +54,7 @@ const App = () => {
     }
   };
   const clearProducts = () => setProducts([]);
+
   return (
     <>
       <div className="md:container md:mx-auto">
@@ -70,6 +71,7 @@ const App = () => {
           products={products}
           getCategories={getCategories}
           categories={categories}
+          getCarts={getCarts}
         />
       </div>
     </>
