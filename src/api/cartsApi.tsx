@@ -8,3 +8,10 @@ export function fetchCarts(userId: number) {
       throw e;
     });
 }
+export function addCart(data: any) {
+  return API.post('/carts', data)
+    .then((response) => response.data)
+    .catch((e) => {
+      throw e;
+    });
+}
