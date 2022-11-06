@@ -10,23 +10,10 @@ const Product = ({ product, getCarts }: any) => {
       date: new Date(),
       products: [{ productId: product.id, quantity: 1 }]
     });
-    // addManageUser(InputFields)
-    // await fetch('https://fakestoreapi.com/carts', {
-    //   method: 'POST',
-    //   body: JSON.stringify({
-    //     userId: 1,
-    //     date: new Date(),
-    //     products: [{ productId: product.id, quantity: 1 }]
-    //   }),
-    //   headers: {
-    //     'Content-type': 'Application/json'
-    //   }
-    // })
     console.log(cartFields);
     addCart(cartFields)
       .then((res) => {
         console.log(res);
-        res.json();
       })
       .then((json) => {
         getCarts();
