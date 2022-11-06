@@ -4,14 +4,16 @@ import axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
 
+import { fetchProducts } from './api/productsApi';
 import Header from './layouts/header/Header';
 import Home from './pages/Home';
 
 const App = () => {
   const [carts, setCarts] = useState({});
   const [products, setProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
+
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   const getCarts = async() => {
     try {
@@ -21,29 +23,20 @@ const App = () => {
       console.error(e);
     }
   };
-  const getCategories = async() => {
-    try {
-      const { data } = await axios.get(
-        'https://fakestoreapi.com/products/categories'
-      );
-      setCategories(data);
-    } catch (e) {
-      console.error(e);
-    }
-  };
-  const searchProducts = async(category: any) => {
-    try {
-      setLoading(true);
-      const { data } = await axios.get(
-        `https://fakestoreapi.com/products/category/${category}`
-      );
-      setProducts(data);
-      setLoading(false);
 
-      console.log(products);
-    } catch (e) {
-      console.error(e);
-    }
+  const searchProducts = (category: any) => {
+    setLoading(true);
+    fetchProducts(category)
+      .then((payload: any) => {
+        if (payload) {
+          setProducts(payload);
+          setLoading(false);
+        }
+      })
+      .catch((reason: any) => {
+        if (reason) setError(reason);
+        setLoading(false);
+      });
   };
   const clearProducts = () => setProducts([]);
 
@@ -56,9 +49,8 @@ const App = () => {
           clearProducts={clearProducts}
           loading={loading}
           products={products}
-          getCategories={getCategories}
-          categories={categories}
           getCarts={getCarts}
+          error={error}
         />
       </div>
     </>

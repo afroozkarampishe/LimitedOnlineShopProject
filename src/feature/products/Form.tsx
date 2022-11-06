@@ -1,22 +1,28 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-const Form = ({
-  searchProducts,
-  getCategories,
-  categories,
-  products,
-  clearProducts,
-  loading
-}: any) => {
+
+import { fetchCategories } from '../../api/categoriesApi';
+const Form = ({ searchProducts, products, clearProducts, loading }: any) => {
   const [text, setText] = useState('');
   const [category, setCategory] = useState('');
+  const [categories, setCategories] = useState([]);
+  const getCategories = () => {
+    fetchCategories()
+      .then((payload: any) => {
+        if (payload) {
+          setCategories(payload);
+        }
+      })
+      .catch((reason: any) => {
+        if (reason) console.error(reason);
+      });
+  };
   useEffect(() => {
     getCategories();
   }, [category]);
   useEffect(() => {
     if (category !== '') {
       searchProducts(category);
-      console.log(category);
     }
   }, [category, text]);
 
