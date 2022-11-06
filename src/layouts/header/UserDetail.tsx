@@ -16,7 +16,6 @@ const UserDetail = () => {
     fetchUser(1)
       .then((payload: any) => {
         if (isMounted() && payload) {
-          console.log(payload);
           setUser(payload);
         }
       })

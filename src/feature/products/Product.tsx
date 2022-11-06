@@ -2,7 +2,6 @@ import React from 'react';
 const Product = ({ product, getCarts }: any) => {
   const addToCart = async(e: any) => {
     e.preventDefault();
-    console.log(product.id);
     await fetch('https://fakestoreapi.com/carts', {
       method: 'POST',
       body: JSON.stringify({
@@ -17,7 +16,6 @@ const Product = ({ product, getCarts }: any) => {
       .then((res) => res.json())
       .then((json) => {
         getCarts();
-        console.log(json);
       });
   };
   return (
