@@ -1,7 +1,7 @@
 import './assets/css/tailwind.css';
 
 import React from 'react';
-import { useCallback,useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { fetchCarts } from './api/cartsApi';
 import { fetchProducts } from './api/productsApi';
@@ -51,6 +51,7 @@ const App = () => {
           searchProducts={searchProducts}
           clearProducts={clearProducts}
           loading={loading}
+          setProducts={setProducts}
           products={products}
           getCarts={getCarts}
           error={error}
