@@ -27,12 +27,10 @@ const Form = ({
       });
   };
   useEffect(() => {
-    console.log(filteredList);
     getCategories();
   }, []);
 
   useEffect(() => {
-    console.log(text);
     if (category !== '') {
       searchProducts(category);
     }
