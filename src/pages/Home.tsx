@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Form from '../products/Form';
-import Products from '../products/Products';
-import Spinner from '../UI/Spinner';
+import Spinner from '../components/Spinner';
+import Form from '../feature/products/Form';
+import Products from '../feature/products/Products';
 const Home = ({
   searchProducts,
   clearProducts,
@@ -14,7 +14,7 @@ const Home = ({
 }: any) => {
   return (
     <>
-      <div className="mx-auto max-w-8xl py-16 px-2 sm:pt-10 sm:pb-24 sm:px-6 lg:px-8">
+      <div className=" max-w-8xl py-16 px-2 sm:pt-10 sm:pb-24 sm:px-6 lg:px-8">
         <Form
           searchProducts={searchProducts}
           getCategories={getCategories}

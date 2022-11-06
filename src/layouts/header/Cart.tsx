@@ -6,7 +6,7 @@ const Cart = ({ getCarts, carts }: any) => {
   }, [carts]);
   return (
     <>
-      <div className="inset-y-0 right-0 flex justify-end items-center pr-2 sm:static sm:inset-auto sm:pr-0 w-full">
+      <div className="cartClass inset-y-0 right-0 flex justify-end items-center pr-2 sm:static sm:inset-auto sm:pr-0 w-full">
         <label className="rounded-full p-1 text-gray-800 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
           <span>Cart</span>
         </label>
