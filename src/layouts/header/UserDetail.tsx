@@ -36,7 +36,7 @@ const UserDetail = () => {
       <>
         <div
           className={
-            'inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:pr-0 w-full userDetailClass'
+            'inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:pr-0 w-full row-start-2  md:row-start-1 row-end-2 md:row-end-1 col-span-1 md:col-span-1 row-span-2 md:row-span-1'
           }
         >
           <div className="relative mr-2">

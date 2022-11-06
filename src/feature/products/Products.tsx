@@ -1,4 +1,5 @@
 import React from 'react';
+import { memo } from 'react';
 
 import Product from './Product';
 const Products = ({ products, getCarts, error }: any) => {
@@ -14,4 +15,4 @@ const Products = ({ products, getCarts, error }: any) => {
     );
 };
 
-export default Products;
+export default memo(Products);

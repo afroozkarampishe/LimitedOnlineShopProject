@@ -1,8 +1,7 @@
 import './assets/css/tailwind.css';
-import './assets/css/App.css';
 
 import React from 'react';
-import { useState } from 'react';
+import { useCallback,useState } from 'react';
 
 import { fetchCarts } from './api/cartsApi';
 import { fetchProducts } from './api/productsApi';
@@ -16,7 +15,7 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const getCarts = () => {
+  const getCarts = useCallback(() => {
     fetchCarts(1)
       .then((payload: any) => {
         if (payload) {
@@ -26,7 +25,7 @@ const App = () => {
       .catch((reason: any) => {
         if (reason) console.error(reason);
       });
-  };
+  }, [carts]);
 
   const searchProducts = (category: any) => {
     setLoading(true);
