@@ -5,13 +5,14 @@ const Form = ({
   getCategories,
   categories,
   products,
-  clearProducts
+  clearProducts,
+  loading
 }: any) => {
   const [text, setText] = useState('');
   const [category, setCategory] = useState('');
   useEffect(() => {
     getCategories();
-  }, []);
+  }, [category]);
   useEffect(() => {
     if (category !== '') {
       searchProducts(category);
@@ -41,7 +42,7 @@ const Form = ({
           </option>
         ))}
       </select>
-      {products.length > 0 && (
+      {products.length > 0 && !loading && (
         <button
           className="inline-flex items-center justify-center rounded-md border border-transparent bg-red-600 px-5 py-2 text-base font-medium text-white hover:bg-red-700"
           onClick={() => clearProducts()}

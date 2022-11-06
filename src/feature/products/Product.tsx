@@ -1,5 +1,25 @@
 import React from 'react';
-const Product = ({ product, clearProducts }: any) => {
+const Product = ({ product, getCarts }: any) => {
+  const addToCart = async(e: any) => {
+    e.preventDefault();
+    console.log(product.id);
+    await fetch('https://fakestoreapi.com/carts', {
+      method: 'POST',
+      body: JSON.stringify({
+        userId: 1,
+        date: new Date(),
+        products: [{ productId: product.id, quantity: 1 }]
+      }),
+      headers: {
+        'Content-type': 'Application/json'
+      }
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        getCarts();
+        console.log(json);
+      });
+  };
   return (
     <>
       <div
@@ -16,10 +36,7 @@ const Product = ({ product, clearProducts }: any) => {
         <div className="mt-4 p-6">
           <div>
             <h3 className="text-sm text-gray-700 text-lg h-16">
-              <a href={product.href}>
-                <span aria-hidden="true" className="absolute inset-0 " />
-                {product.title}
-              </a>
+              <a href={product.href}>{product.title}</a>
             </h3>
             <p className="mt-1 text-sm text-gray-500 h-40 overflow-hidden">
               {product.description}
@@ -30,12 +47,12 @@ const Product = ({ product, clearProducts }: any) => {
               price {product.price}$
             </p>
             <div className="inline-flex rounded-md shadow">
-              <a
-                href="#"
+              <button
                 className="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-5 py-3 text-base font-medium text-white hover:bg-indigo-700"
+                onClick={(e) => addToCart(e)}
               >
                 Add to Cart
-              </a>
+              </button>
             </div>
           </div>
         </div>
