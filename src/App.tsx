@@ -1,9 +1,10 @@
+import './assets/css/tailwind.css';
 import './assets/css/App.css';
 
-import axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
 
+import { fetchCarts } from './api/cartsApi';
 import { fetchProducts } from './api/productsApi';
 import Header from './layouts/header/Header';
 import Home from './pages/Home';
@@ -15,13 +16,16 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const getCarts = async() => {
-    try {
-      const { data } = await axios.get('https://fakestoreapi.com/carts/user/1');
-      setCarts(data);
-    } catch (e) {
-      console.error(e);
-    }
+  const getCarts = () => {
+    fetchCarts(1)
+      .then((payload: any) => {
+        if (payload) {
+          setCarts(payload);
+        }
+      })
+      .catch((reason: any) => {
+        if (reason) console.error(reason);
+      });
   };
 
   const searchProducts = (category: any) => {
