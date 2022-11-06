@@ -2,15 +2,13 @@ import React from 'react';
 
 import { addCart } from '../../api/cartsApi';
 const Product = ({ product, getCarts }: any) => {
-  const [cartFields, setCartFields] = React.useState({});
+  const [cartFields] = React.useState({
+    userId: 1,
+    date: new Date(),
+    products: [{ productId: product.id, quantity: 1 }]
+  });
   const addToCart = (e: any) => {
     e.preventDefault();
-    setCartFields({
-      userId: 1,
-      date: new Date(),
-      products: [{ productId: product.id, quantity: 1 }]
-    });
-    console.log(cartFields);
     addCart(cartFields)
       .then((res) => {
         console.log(res);

@@ -18,7 +18,6 @@ const Home = ({
 }: any) => {
   const [filteredList, setFilteredList] = useState([]);
   useEffect(() => {
-    console.log(filteredList);
     setFilteredList(products);
   }, [products]);
   return (
