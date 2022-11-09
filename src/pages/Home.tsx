@@ -9,11 +9,9 @@ const Home = ({
   searchProducts,
   getAllProducts,
   products,
-  setProducts,
   loading,
-  getCategories,
-  categories,
-  getCarts,
+  setCart,
+  cart,
   error
 }: any) => {
   const [filteredList, setFilteredList] = useState([]);
@@ -28,18 +26,20 @@ const Home = ({
       <div className=" max-w-8xl py-16 px-2 sm:pt-10 sm:pb-24 sm:px-6 lg:px-8">
         <Form
           searchProducts={searchProducts}
-          getCategories={getCategories}
-          categories={categories}
           products={products}
-          setProducts={setProducts}
-          filteredList={filteredList}
           setFilteredList={setFilteredList}
           loading={loading}
+          getAllProducts={getAllProducts}
         />
 
         {loading && <Spinner />}
         {!loading && (
-          <Products products={filteredList} getCarts={getCarts} error={error} />
+          <Products
+            products={filteredList}
+            cart={cart}
+            setCart={setCart}
+            error={error}
+          />
         )}
       </div>
     </>

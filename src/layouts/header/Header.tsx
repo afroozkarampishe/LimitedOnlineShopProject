@@ -2,7 +2,7 @@ import React from 'react';
 
 import Cart from './Cart';
 import UserDetail from './UserDetail';
-const Header = ({ getCarts, carts }: any) => {
+const Header = ({ cart }: any) => {
   return (
     <>
       <nav className="bg-zinc-300">
@@ -18,7 +18,7 @@ const Header = ({ getCarts, carts }: any) => {
                 />
               </div>
             </div>
-            <Cart getCarts={getCarts} carts={carts} />
+            <Cart cart={cart} />
           </div>
         </div>
       </nav>

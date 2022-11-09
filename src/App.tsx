@@ -1,31 +1,30 @@
 import './assets/css/tailwind.css';
 
 import React from 'react';
-import { useCallback, useState } from 'react';
+import { useState } from 'react';
 
-import { fetchCarts } from './api/cartsApi';
+// import { fetchCarts } from './api/cartsApi';
 import { fetchAllProducts, fetchProducts } from './api/productsApi';
 import Header from './layouts/header/Header';
 import Home from './pages/Home';
 
 const App = () => {
-  const [carts, setCarts] = useState({});
+  const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]);
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
-  const getCarts = useCallback(() => {
-    fetchCarts(1)
-      .then((payload: any) => {
-        if (payload) {
-          setCarts(payload);
-        }
-      })
-      .catch((reason: any) => {
-        if (reason) console.error(reason);
-      });
-  }, [carts]);
+  // const getCarts = useCallback(() => {
+  //   fetchCarts(1)
+  //     .then((payload: any) => {
+  //       if (payload) {
+  //         setCarts(payload);
+  //       }
+  //     })
+  //     .catch((reason: any) => {
+  //       if (reason) console.error(reason);
+  //     });
+  // }, [carts]);
 
   const getAllProducts = () => {
     setLoading(true);
@@ -60,14 +59,14 @@ const App = () => {
   return (
     <>
       <div>
-        <Header getCarts={getCarts} carts={carts} />
+        <Header cart={cart} />
         <Home
           searchProducts={searchProducts}
           getAllProducts={getAllProducts}
           loading={loading}
-          setProducts={setProducts}
           products={products}
-          getCarts={getCarts}
+          cart={cart}
+          setCart={setCart}
           error={error}
         />
       </div>

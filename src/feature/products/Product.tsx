@@ -1,22 +1,33 @@
 import React from 'react';
 
-import { addCart } from '../../api/cartsApi';
-const Product = ({ product, getCarts }: any) => {
-  const [cartFields] = React.useState({
-    userId: 1,
-    date: new Date(),
-    products: [{ productId: product.id, quantity: 1 }]
-  });
+// import { addCart } from '../../api/cartsApi';
+const Product = ({ product, cart, setCart }: any) => {
+  const item = { productId: product.id, quantity: 1 };
+
   const addToCart = (e: any) => {
     e.preventDefault();
-    addCart(cartFields)
-      .then((res) => {
-        console.log(res);
-      })
-      .then((json) => {
-        getCarts();
-      });
+    // Update cart item quantity if already in cart
+    if (cart.some((cartItem: any) => cartItem.productId === item.productId)) {
+      setCart((c: any) =>
+        c.map((cartItem: any) =>
+          cartItem.productId === item.productId
+            ? {
+              ...cartItem,
+              quantity: cartItem.quantity + 1
+            }
+            : cartItem
+        )
+      );
+      return;
+    }
+
+    // Add to cart
+    setCart((c: any) => [
+      ...c,
+      { ...item, quantity: 1 } // <-- initial quantity 1
+    ]);
   };
+
   return (
     <>
       <div
