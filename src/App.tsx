@@ -4,7 +4,7 @@ import React from 'react';
 import { useCallback, useState } from 'react';
 
 import { fetchCarts } from './api/cartsApi';
-import { fetchAllProducts,fetchProducts } from './api/productsApi';
+import { fetchAllProducts, fetchProducts } from './api/productsApi';
 import Header from './layouts/header/Header';
 import Home from './pages/Home';
 
@@ -56,7 +56,6 @@ const App = () => {
         setLoading(false);
       });
   };
-  const clearProducts = () => setProducts([]);
 
   return (
     <>
@@ -65,7 +64,6 @@ const App = () => {
         <Home
           searchProducts={searchProducts}
           getAllProducts={getAllProducts}
-          clearProducts={clearProducts}
           loading={loading}
           setProducts={setProducts}
           products={products}

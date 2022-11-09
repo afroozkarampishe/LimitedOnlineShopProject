@@ -8,7 +8,6 @@ import Products from '../feature/products/Products';
 const Home = ({
   searchProducts,
   getAllProducts,
-  clearProducts,
   products,
   setProducts,
   loading,
@@ -31,7 +30,6 @@ const Home = ({
           searchProducts={searchProducts}
           getCategories={getCategories}
           categories={categories}
-          clearProducts={clearProducts}
           products={products}
           setProducts={setProducts}
           filteredList={filteredList}
