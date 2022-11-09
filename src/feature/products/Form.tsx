@@ -35,7 +35,11 @@ const Form = ({
       searchProducts(category);
     }
   }, [category]);
-
+  const clearProductsHandler = () => {
+    setCategory('');
+    clearProducts();
+    // getAllProducts();
+  };
   const submitHandler = (e: any) => {
     e.preventDefault();
     if (text !== '') {
@@ -77,7 +81,7 @@ const Form = ({
       {filteredList.length > 0 && !loading && (
         <button
           className="inline-flex items-center justify-center rounded-md border border-transparent bg-red-600 px-5 py-2 text-base font-medium text-white hover:bg-red-700"
-          onClick={() => clearProducts()}
+          onClick={() => clearProductsHandler()}
         >
           CLEAR
         </button>

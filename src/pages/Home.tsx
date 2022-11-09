@@ -7,6 +7,7 @@ import Products from '../feature/products/Products';
 
 const Home = ({
   searchProducts,
+  getAllProducts,
   clearProducts,
   products,
   setProducts,
@@ -17,6 +18,9 @@ const Home = ({
   error
 }: any) => {
   const [filteredList, setFilteredList] = useState([]);
+  useEffect(() => {
+    getAllProducts();
+  }, []);
   useEffect(() => {
     setFilteredList(products);
   }, [products]);
