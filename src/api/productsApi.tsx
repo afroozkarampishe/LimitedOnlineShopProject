@@ -8,3 +8,13 @@ export function fetchProducts(category: string) {
       throw e;
     });
 }
+
+export function fetchAllProducts() {
+  return API.get('https://fakestoreapi.com/products')
+    .then((response) => {
+      return response.data;
+    })
+    .catch((e) => {
+      throw e;
+    });
+}

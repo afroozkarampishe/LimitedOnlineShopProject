@@ -4,7 +4,7 @@ import React from 'react';
 import { useCallback, useState } from 'react';
 
 import { fetchCarts } from './api/cartsApi';
-import { fetchProducts } from './api/productsApi';
+import { fetchAllProducts,fetchProducts } from './api/productsApi';
 import Header from './layouts/header/Header';
 import Home from './pages/Home';
 
@@ -26,6 +26,21 @@ const App = () => {
         if (reason) console.error(reason);
       });
   }, [carts]);
+
+  const getAllProducts = () => {
+    setLoading(true);
+    fetchAllProducts()
+      .then((payload: any) => {
+        if (payload) {
+          setProducts(payload);
+          setLoading(false);
+        }
+      })
+      .catch((reason: any) => {
+        if (reason) setError(reason);
+        setLoading(false);
+      });
+  };
 
   const searchProducts = (category: any) => {
     setLoading(true);
@@ -49,6 +64,7 @@ const App = () => {
         <Header getCarts={getCarts} carts={carts} />
         <Home
           searchProducts={searchProducts}
+          getAllProducts={getAllProducts}
           clearProducts={clearProducts}
           loading={loading}
           setProducts={setProducts}
